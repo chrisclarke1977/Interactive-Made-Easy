@@ -21,13 +21,69 @@
 
 $("#media_list li").draggable({revert: "valid", revertDuration: 0});
 
+
+
+
+
+
+
+
+
+
+
+
 $("#container").droppable({
     drop: function(event, ui){
         $("#id_media_name").val($(ui.draggable).attr("media_id"));
-        if ($(ui.draggable).attr("media_type")=="video")
-            $("#img_div").html('<iframe width="420" height="315" src="'+$(ui.draggable).attr("media_url")+'" frameborder="0" allowfullscreen></iframe>');
-        else
-            $("#img_div").html('<img src="'+$(ui.draggable).attr("media_url")+'" width="300"/>');
+        
+        //if ($(ui.draggable).attr("media_type")=="video")
+        //    $("#img_div").html('<iframe width="420" height="315" src="'+$(ui.draggable).attr("media_url")+'" frameborder="0" allowfullscreen></iframe>');
+        //else
+        //    $("#img_div").html('<img src="'+$(ui.draggable).attr("media_url")+'" width="300"/>');
+
+        var position = {
+            left: $(ui.draggable).position().left,
+            top: $(ui.draggable).position().top,
+        }
+
+        //var new_img_id = ($(ui.draggable).attr("media_id")+"_www").replace('.', '');
+        var new_img_id = "ewfrefe";
+        $('<img src="'+$(ui.draggable).attr("media_url")+'" id="'+new_img_id+'" wigth="300"/>').appendTo("#img_div");
+
+        // Your original element
+        var ele = $("#"+new_img_id);
+        //console.log(ele);
+        //var ele = $(ui.draggable);
+
+        // Create handle dynamically
+        $('<div></div>').appendTo(ele).attr('id','handle').css({
+            'position': 'absolute',
+            'bottom': 5,
+            'right': 5,
+            'height': 10,
+            'width': 10,
+            'background-color': 'orange'
+        });
+
+        ele.css('position', 'relative');
+
+        $('#handle').draggable({
+            handle: '#handle',
+            opacity: 0.01, 
+            helper: 'clone',
+            drag: function(event, ui){
+                var rotateCSS = 'rotate(' + ui.position.left + 'deg)';
+
+                $(this).parent().css({
+                    '-moz-transform': rotateCSS,
+                    '-webkit-transform': rotateCSS
+                });
+            }
+        });
+
+
+
+
     }
 });
 </script>

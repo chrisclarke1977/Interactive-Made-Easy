@@ -1,0 +1,11 @@
+<div>List of media files:</div>
+<ul id="media_list">
+    {% for file in files %}
+        <li media_id="{{ file.name }}">
+            <a href="{{ file.url }}">{{ file.name }}</a>
+            {% ifequal file.media_type "image" %}
+            <img src="{{ file.url }}" width="50"/>
+            {% endifequal %}
+        </li>
+    {% endfor %}
+</ul>

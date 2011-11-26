@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="#" class="highslide" onclick="return hs.htmlExpand(this, {contentId: 'add-media-window'} )">Add media</a>
+
+<!-- TODO: organize media entities in a table : 4 columns, N rows -->
+{% include "media_list.html" %}
+
+<!--<table><tr><td style="width:80%">
+    {% include "media_list.html" %}
+</td><td style="vertical-align: top;">
+    {% include "add_media_widget.html" %}
+</td></tr>
+</table>-->
+
+
+
+<div class="highslide-html-content" id="add-media-window" style="width: 500px">
+    <a href="#" onclick="hs.close(this)">Close</a>
+    {% include "add_media_widget.html" %}
+</div>
+
+{% endblock %}

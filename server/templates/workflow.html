@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script type="text/javascript" src="{{ STATIC_URL }}workflow.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<span id="add_workflow" class="clickable">Add workflow</span>
+
+
+<ul id="workflow_list">
+    
+</ul>
+
+
+<div id="dialog-confirm" title="Delete TODO Item?" style="display:none;">
+Are you sure you want to delete this TODO item?
+</div>
+
+<div id="create-workflow" style="display:none;">
+Enter the name of the new slides list: <input type="text" id="workflow_name"/>
+</div>
+
+
+<script type="text/javascript">
+
+var workflow_data = {{ workflows|safe }};
+
+function add_slide(workflow_ul, slide_data){
+    //var i = $("#slide_list li").length;
+    var workflow_name = workflow_ul.attr("id").replace("workflow-", "");
+
+    var html = '<li id="slide-'+workflow_name+'-'+slide_data['id']+'" class="slide_class">' +
+        'test '+workflow_name+' '+slide_data['id']+
+        '<span></span>' +
+        '<div class="actions">' +
+            '<a class="edit" href="#">Edit</a>' +
+            '<a class="delete" href="#">Delete</a>' +
+        '</div>' +
+        '</li>';
+    workflow_ul.append(html);
+}
+
+function add_workflow(id, slides_data){
+    var html = '<li id="workflow-'+id+'"><div style="border: solid 1px black;">' +
+            id +
+            '<span id="add_slide-'+id+'" class="clickable">Add slide</span>' +
+            '<ul id="slide_list-'+id+'" class="slide_list"></ul>' +
+        '</div></li>';
+    $("#workflow_list").append(html);
+
+    $("#add_slide-"+id).click(function(){
+        add_slide($("#slide_list-"+id), {"id": "dcds"}); // TODO: take workflow id
+
+        //var slide_template = "<li>test {{idx}}</li>";
+        //var context = {idx: 'decewcd'};
+        //console.log(Mustache.to_html(slide_template, context));
+        //$("#slide_list").append($(Mustache.to_html(slide_template, context)));
+    });
+}
+
+$("#add_workflow").click(function(){
+    $("#create-workflow").dialog('open');
+    add_workflow("ds", []);
+});
+
+for (i in workflow_data){
+    add_workflow(workflow_data[i]["name"], workflow_data[i]["slides"]);
+}
+</script>
+
+
+
+{% endblock %}

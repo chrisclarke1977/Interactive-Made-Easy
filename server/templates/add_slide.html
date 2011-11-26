@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table><tr><td style="width:80%;vertical-align:top;" id="container">
+    <form action="" method="post">
+        <div>Slide name: {{ form.name }}</div>
+        <div style="display:none;">{{ form.media_name }}</div>
+
+        <input type="submit" value="Save" />
+        {% csrf_token %}
+    </form>
+
+<div id="img_div"></div>
+</td><td>
+    {% include "media_list.html" %}
+</td></tr></table>
+
+<script type="text/javascript">
+
+$("#media_list li").draggable({revert: "valid", revertDuration: 0});
+
+$("#container").droppable({
+    drop: function(event, ui){
+        $("#id_media_name").val($(ui.draggable).attr("media_id"));
+        $("#img_div").html('<img src="'+$(ui.draggable).attr("media_url")+'" width="300"/>');
+    }
+});
+
+</script>
+
+{% endblock %}

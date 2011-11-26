@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="icon" href="{{ STATIC_URL }}favicon.ico" type="image/x-icon" />
+    <title>{{ title }}</title>
+
+    <link href="{{ STATIC_URL }}css/base.css" type="text/css" rel="stylesheet" />
+
+    <link href="{{ STATIC_URL }}libs/jquery/css/jquery-ui.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="{{ STATIC_URL }}libs/jquery/js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}libs/jquery/js/jquery-ui.js"></script>
+    <!--script type="text/javascript" src="{{ STATIC_URL }}libs/backbone/js/underscore.js"></script-->
+    <!--script type="text/javascript" src="{{ STATIC_URL }}libs/mustache.js"></script-->
+    <script type="text/javascript" src="{{ STATIC_URL }}libs/tiny_mce/tiny_mce.js"></script>
+
+
+    <script type="text/javascript" src="{{ STATIC_URL }}libs/highslide/highslide.js"></script>
+
+    {% block head %}{% endblock %}
+
+    <script type="text/javascript">
+        hs.graphicsDir = 'my-highslide-dir/graphics/';
+        hs.outlineType = 'outer-glow';
+    </script>
+</head>
+
+<body>
+<h1 style="text-align:center; color:#4455FF">Interactive Made Easy</h1>
+
+<table>
+    <tr>
+        <td style="background-color: blue;"><a href="/" class="menu_text_default">Home</a></td>
+        <td style="background-color: blue;"><a href="{% url add_slide %}" class="menu_text_default">Slides</a></td>
+        <td style="background-color: blue;"><a href="{% url media %}" class="menu_text_default">Media</a></td>
+        <td style="background-color: blue;"><a href="{% url workflow %}" class="menu_text_default">Workflow</a></td>
+
+        <!--td style="width:10pt;"></td-->
+    </tr>
+</table>
+
+{% block content %}{% endblock %}
+
+
+</body>
+</html>

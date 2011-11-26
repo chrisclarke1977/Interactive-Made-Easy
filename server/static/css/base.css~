@@ -1,0 +1,52 @@
+.errorlist {
+    color: red;
+}
+.menu_text_default {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.clickable {cursor: pointer; color: blue;}
+
+
+
+ul.slide_list{
+    margin:0 auto;
+    width:500px;
+    position:relative;
+}
+
+ul.slide_list li{
+    background-color:#F9F9F9;
+    border:1px solid #EEEEEE;
+    list-style:none;
+    margin:6px;
+    padding:6px 9px;
+    position:relative;
+    cursor:n-resize;
+
+    /* CSS3 text shadow and rounded corners: */
+    text-shadow:1px 1px 0 white;
+
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+    border-radius:6px;
+}
+
+ul.slide_list li:hover{
+    border-color:#9be0f9;
+
+    /* CSS3 glow effect: */
+    -moz-box-shadow:0 0 5px #A6E5FD;
+    -webkit-box-shadow:0 0 5px #A6E5FD;
+    box-shadow:0 0 5px #A6E5FD;
+}
+
+
+.slide_list .actions a.edit{
+    background:url("/static/img/edit.png") no-repeat center center;
+}
+
+.slide_list .actions a.delete{
+    background:url("/static/img/delete.png") no-repeat center center;
+}

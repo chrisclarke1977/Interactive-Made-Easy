@@ -13,6 +13,7 @@
 
 <div id="img_div"></div>
 </td><td>
+    {% include "add_media_buttons.html" %}
     {% include "media_list.html" %}
 </td></tr></table>
 
@@ -22,14 +23,14 @@ $("#media_list li").draggable({revert: "valid", revertDuration: 0});
 
 $("#container").droppable({
     drop: function(event, ui){
-        console.log($(ui.draggable).attr("media_id"));
-        //$("#id_media_name").val($(ui.draggable).attr("media_id"));
-        console.log($("#id_media_name"));
         $("#id_media_name").val($(ui.draggable).attr("media_id"));
-        $("#img_div").html('<img src="'+$(ui.draggable).attr("media_url")+'" width="300"/>');
+        if ($(ui.draggable).attr("media_type")=="video")
+            $("#img_div").html('<iframe width="420" height="315" src="'+$(ui.draggable).attr("media_url")+'" frameborder="0" allowfullscreen></iframe>');
+        else
+            $("#img_div").html('<img src="'+$(ui.draggable).attr("media_url")+'" width="300"/>');
     }
 });
-
 </script>
+
 
 {% endblock %}

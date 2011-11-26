@@ -1,0 +1,12 @@
+<!-- Adding media -->
+<a href="#" class="highslide" onclick="return hs.htmlExpand(this, {contentId: 'add-media-window'})">Add media</a>
+<a href="#" class="highslide" onclick="return hs.htmlExpand(this, {contentId: 'add-text-window'})">Add text</a>
+
+<div class="highslide-html-content" id="add-media-window" style="width: 500px; display: none;">
+    <a href="#" onclick="hs.close(this)">Close</a>
+    {% include "add_media_widget.html" %}
+</div>
+
+<div id="add-text-window" style="width: 500px; display: none;">
+    {% include "add_text.html" %}
+</div>

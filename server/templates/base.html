@@ -15,13 +15,16 @@
     <script type="text/javascript" src="{{ STATIC_URL }}libs/tiny_mce/tiny_mce.js"></script>
 
 
-    <script type="text/javascript" src="{{ STATIC_URL }}libs/highslide/highslide.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}libs/highslide/highslide-full.min.js"></script>
+    <link href="{{ STATIC_URL }}libs/highslide/highslide.css" type="text/css" rel="stylesheet" />
 
     {% block head %}{% endblock %}
 
     <script type="text/javascript">
-        hs.graphicsDir = 'my-highslide-dir/graphics/';
-        hs.outlineType = 'outer-glow';
+        hs.graphicsDir = "{{ STATIC_URL }}libs/highslide/graphics/";
+        hs.outlineType = "rounded-white";
+        hs.wrapperClassName = "draggable-header";
+        hs.showCredits = false;
     </script>
 </head>
 

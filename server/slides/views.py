@@ -5,14 +5,13 @@ from django.template import RequestContext
 
 from pymongo import Connection
 
-from media_library.views import media_db
+from media_library.views import AddMediaForm, media_db
 from slides.forms import SlideForm
 
 connection = Connection()
 slides_db = connection.ime.slides
 
 def add_slide(request):
-    
     if request.method == 'POST':
         form = SlideForm(request.POST)
         if form.is_valid():
@@ -20,8 +19,9 @@ def add_slide(request):
             return HttpResponseRedirect(reverse('slide'))
     else:
         form = SlideForm()
-    
+
     context = {
+        'media_form': AddMediaForm(),
         'form': form,
         'files': media_db.find(),
     }

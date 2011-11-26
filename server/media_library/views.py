@@ -31,10 +31,14 @@ def add_media(request):
                     'url': settings.MEDIA_URL + 'files/' + filename,
                 })
             else:
+                url = form.cleaned_data['url']
+                if form.cleaned_data['media_type'] == 'video':
+                    url =  'http://www.youtube.com/embed/' + form.cleaned_data['url'].split('/')[-1]
+
                 media_db.insert({
                     'name': form.cleaned_data['url'],
                     'media_type': form.cleaned_data['media_type'],
-                    'url': form.cleaned_data['url'],
+                    'url': url,
                 })
 
             #print media_db.find_one({'name': form.cleaned_data['name']})['url']
@@ -44,7 +48,7 @@ def add_media(request):
         form = AddMediaForm()
 
     context = {
-        'form': form,
+        'media_form': form,
         'files': media_db.find(),
     }
     return render_to_response('add_media.html', context_instance=RequestContext(request, context))

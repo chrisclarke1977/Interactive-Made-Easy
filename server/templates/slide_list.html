@@ -1,0 +1,8 @@
+<div>List of slides:</div>
+<ul id="slides_list" style="margin:20px;">
+    {% for slide in slides %}
+        <li class="media_li slide_li" slide_id="{{ slide.name }}">
+            <a class="clickable" href="{% url slide slide.name %}">{{ slide.name }}</a>
+        </li>
+    {% endfor %}
+</ul>

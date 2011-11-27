@@ -4,10 +4,10 @@
         Media type: {{ media_form.media_type }} {{ media_form.media_type.errors }}
         <ul>
             <li>
-                <input type="radio" name="source" value="file" id="file"/> <label for="file">Upload a file:</label>
+                <input type="radio" name="source" value="file" id="file"/> <label for="source">Upload a file:</label>
                 {{ media_form.file }} {{ media_form.file.errors }}
             </li>
-            <li><input type="radio" name="source" value="link" id="link"/> <label for="link">URL:</label>
+            <li><input type="radio" name="source" value="link" id="link"/> <label for="source">URL:</label>
                 {{ media_form.url }} {{ media_form.url.errors }}
             </li>
         </ul>

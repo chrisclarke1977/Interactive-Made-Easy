@@ -42,6 +42,7 @@ $(document).ready(function(){
         autoOpen:false,
         buttons: {
             'Delete item': function() {
+                console.log(currentTODO.data('id'));
                 $.get("/workflow/",{"action": "delete", "id": currentTODO.data('id')}, function(msg){
                     currentTODO.remove();
                 })

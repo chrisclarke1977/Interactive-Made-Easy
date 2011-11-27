@@ -6,6 +6,8 @@ from django.template import RequestContext
 
 from pymongo import Connection
 
+from slides.views import slides_db
+
 connection = Connection()
 workflow_db = connection.ime.workflow
 workflow_db.create_index('name', unique=True)
@@ -14,25 +16,41 @@ def add_workflow(request):
     workflows = list(workflow_db.find())
     for workflow in workflows:
         del workflow['_id']
+
     context = {
-        'workflows': workflows,
+        'workflows': json.dumps(workflows),
+        'slides': list(slides_db.find()),
     }
-    print workflows
     return render_to_response('workflow.html', context_instance=RequestContext(request, context))
 
 def ajax(request):
-    print request.GET
-    
+    action = request.GET.get('action', '')
 
-    if request.GET.get('action', '') == 'create_workflow':
+    if action == 'create_workflow':
         workflow_db.insert({'name': request.GET['name'], 'slides': []})
-        return HttpResponse('ok')
 
-    elif request.GET.get('action', '') == 'rearrange':
+    elif action == 'add_slide':
+        workflow = workflow_db.find_one({'name': request.GET['name']})
+        workflow['slides'].append(request.GET['slide_id'])
+        workflow_db.save(workflow)
+
+    elif action == 'rearrange':
         request.GET['positions']
         
         
-        return HttpResponse('ok')
-    elif request.GET.get('action', '') == 'delete':
+
+    elif action == 'delete':
         # TODO: delete slide
-        return HttpResponse('ok')
+        pass
+
+    return HttpResponse('ok')
+
+def play(request, id):
+    workflow = workflow_db.find_one({'name': id})
+
+    slides = list(slides_db.find({'name': {"$in": workflow['slides']}}))
+    for slide in slides:
+        del slide['_id']
+
+    context = {}
+    return render_to_response('play.html', context_instance=RequestContext(request, context))

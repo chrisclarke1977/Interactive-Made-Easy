@@ -1,7 +1,12 @@
-<textarea name="content" style="width:100%;"></textarea>
+<textarea name="content" style="width:700px;"></textarea>
 
 <script type="text/javascript">
-tinyMCE.init({
+    tinyMCE.init({
+        mode : "textareas",
+        theme : "simple",
+    });
+
+/*tinyMCE.init({
         // General options
         mode : "textareas",
         theme : "advanced",
@@ -17,7 +22,7 @@ tinyMCE.init({
         theme_advanced_resizing : true,
 
         // Example content CSS (should be your site CSS)
-        content_css : "{{ STATIC_URL }}libs/tiny_mce/css/example.css",
+        content_css : "{{ STATIC_URL }}libs/tiny_mce/themes/advanced/skins/default/content.css",
 
         // Drop lists for link/image/media/template dialogs
         /*template_external_list_url : "{{ STATIC_URL }}libs/tiny_mce/js/template_list.js",
@@ -26,9 +31,9 @@ tinyMCE.init({
         media_external_list_url : "{{ STATIC_URL }}libs/tiny_mce/js/media_list.js",     */
 
         // TODO: Replace values for the template plugin
-        template_replace_values : {
+        /*template_replace_values : {
             username : "user",
             staffid : "991234"
         }
-});
+});*/
 </script>

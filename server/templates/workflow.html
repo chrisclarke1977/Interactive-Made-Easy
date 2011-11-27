@@ -6,12 +6,17 @@
 
 {% block content %}
 
-<span id="add_workflow" class="clickable">Add workflow</span>
+<table style="width:100%;"><tr><td style="width:80%;vertical-align:top;" id="container">
+    <span id="add_workflow" class="clickable">Add workflow</span>
+    <ul id="workflow_list" style="width:600px;"></ul>
+</td><td>
+    {% include "slide_list.html" %}
+</td></tr></table>
 
 
-<ul id="workflow_list">
-    
-</ul>
+
+
+
 
 
 <div id="dialog-confirm" title="Delete TODO Item?" style="display:none;">
@@ -25,14 +30,18 @@ Enter the name of the new slides list: <input type="text" id="workflow_name"/>
 
 <script type="text/javascript">
 
+$("#slides_list li").draggable({revert: "valid", revertDuration: 0});
+
 var workflow_data = {{ workflows|safe }};
 
-function add_slide(workflow_ul, slide_data){
-    //var i = $("#slide_list li").length;
-    var workflow_name = workflow_ul.attr("id").replace("workflow-", "");
+
+function add_slide(workflow_ul, slide_data, server){
+    var workflow_name = workflow_ul.attr("id").replace("slide_list-", "");
+
+    console.log("add_slide", slide_data);
 
     var html = '<li id="slide-'+workflow_name+'-'+slide_data['id']+'" class="slide_class">' +
-        'test '+workflow_name+' '+slide_data['id']+
+        slide_data['id']+
         '<span></span>' +
         '<div class="actions">' +
             '<a class="edit" href="#">Edit</a>' +
@@ -40,15 +49,22 @@ function add_slide(workflow_ul, slide_data){
         '</div>' +
         '</li>';
     workflow_ul.append(html);
+
+    if (server)
+        $.get("/workflow/", {"action": "add_slide", "name": workflow_name, "slide_id": slide_data['id']}, function(msg){});
 }
 
 function add_workflow(id, slides_data){
-    var html = '<li id="workflow-'+id+'"><div style="border: solid 1px black;">' +
-            id +
-            '<span id="add_slide-'+id+'" class="clickable">Add slide</span>' +
+    var html = '<li id="workflow-'+id+'"><div style="border: solid 1px gray;margin: 20px;">' +
+            '<h3 style="text-align:center; margin:3px;">'+id +'</h3>' +
+            '<span id="add_slide-'+id+'" class="clickable">Add slide</span>' + ' | ' +
+            '<a id="play-'+id+'" class="clickable" href="{% url play_workflow "" %}'+id+'">Play</a>' +
             '<ul id="slide_list-'+id+'" class="slide_list"></ul>' +
         '</div></li>';
     $("#workflow_list").append(html);
+
+    for (var i in slides_data)
+        add_slide($("#slide_list-"+id), {"id": slides_data[i]});
 
     $("#add_slide-"+id).click(function(){
         add_slide($("#slide_list-"+id), {"id": "dcds"}); // TODO: take workflow id
@@ -62,12 +78,26 @@ function add_workflow(id, slides_data){
 
 $("#add_workflow").click(function(){
     $("#create-workflow").dialog('open');
-    add_workflow("ds", []);
+    add_workflow("ds", []); // TODO: fix name
 });
 
 for (i in workflow_data){
     add_workflow(workflow_data[i]["name"], workflow_data[i]["slides"]);
 }
+
+
+$("#workflow_list li").droppable({
+    drop: function(event, ui){
+        if ($(ui.draggable).attr("slide_id")){
+            var workflow_id = $(this).attr('id').replace('workflow-', '');
+
+            var slide_id = $(ui.draggable).attr("slide_id");
+            add_slide($('#slide_list-'+workflow_id), {'id': $(ui.draggable).attr("slide_id")}, true);
+        }
+    }
+})
+
+
 </script>
 
 

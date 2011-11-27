@@ -1,14 +1,26 @@
 .errorlist {
     color: red;
 }
-.menu_text_default {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
 .clickable {cursor: pointer; color: blue;}
 
+h1 {
+    background-image: url("/static/img/logo.png");
+    background-repeat: no-repeat;
+    background-size: 70%;
+    color: #FFFFFF;
+    font-size: 300%;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    text-indent: -9999em;
+    text-shadow: 1px 1px 3px #000000;
+    width: 746px;
+}
 
+ul {
+    list-style-type: none;
+}
 
 ul.slide_list{
     margin:0 auto;
@@ -43,10 +55,65 @@ ul.slide_list li:hover{
 }
 
 
+.slide_list .actions{
+    position:absolute;
+    right:7px;
+    top:6px;
+}
+
+.slide_list .actions a{
+    display:block;
+    width:16px;
+    height:16px;
+    overflow:hidden;
+    float:left;
+    text-indent:-9999px;
+    margin:3px;
+}
+
 .slide_list .actions a.edit{
     background:url("/static/img/edit.png") no-repeat center center;
 }
 
 .slide_list .actions a.delete{
     background:url("/static/img/delete.png") no-repeat center center;
+}
+
+td a.menu {
+    color: #123d54;
+    padding: 1px 5px;
+    background: -moz-linear-gradient(
+        top,
+        #afd9fa 0%,
+        #588fad);
+    background: -webkit-gradient(
+        linear, left top, left bottom, 
+        from(#afd9fa),
+        to(#588fad));
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 1px solid #003366;
+    -moz-box-shadow:
+        0px 1px 3px rgba(000,000,000,0.5),
+        inset 0px 0px 1px rgba(255,255,255,1);
+    -webkit-box-shadow:
+        0px 1px 3px rgba(000,000,000,0.5),
+        inset 0px 0px 1px rgba(255,255,255,1);
+    text-shadow:
+        0px -1px 0px rgba(000,000,000,0.7),
+        0px 1px 0px rgba(255,255,255,0.3);
+}
+
+.media_li {
+    padding: 3px;
+    border: 1px dashed #333;
+}
+
+.media_li a {
+    text-decoration: none;
+    color: black;
+}
+.media_li a:hover {
+    color: purple;
 }

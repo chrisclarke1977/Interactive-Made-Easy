@@ -1,0 +1,4 @@
+.bt_drag, .bt_center {
+    display: none;
+    visibility: hidden;
+}

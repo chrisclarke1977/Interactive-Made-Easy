@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
+{% block head %}
+
+<link href="{{ STATIC_URL }}css/present.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+
 {% block content %}
 
-{{ text }}
+{{ name }}
+
+{{ html|safe }}
+
+
 
 {% endblock %}

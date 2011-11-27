@@ -47,8 +47,16 @@ def add_media(request):
     else:
         form = AddMediaForm()
 
+    files = list(media_db.find())
+    for fl in files:
+        if fl['url'].startswith(settings.MEDIA_URL):
+            fl['name_short'] = fl['name']
+        else:
+            fl['name_short'] = fl['name'].split('/')[-1]
+        
+
     context = {
         'media_form': form,
-        'files': media_db.find(),
+        'files': files,
     }
     return render_to_response('add_media.html', context_instance=RequestContext(request, context))

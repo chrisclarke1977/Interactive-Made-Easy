@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 
+{% block head %}
+
+<!--style type="text/css"></style-->
+<link href="{{ STATIC_URL }}css/present.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+
 {% block content %}
 
-slide
+{{ name }}
+
+{{ html|safe }}
+
+
 
 {% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<link href="{{ STATIC_URL }}css/present.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block content %}
+
+
+
+<span id="next_slide" class="clickable">Next</span>
+
+
+<div id="slides">
+{% for slide in slides %}
+<!--{{ slide.name }}-->
+<div style="position:absolute;visibility:hidden;">
+    {{ slide.html|safe }}
+</div>
+
+
+
+
+{% endfor %}
+</div>
+
+<script type="text/javascript">
+
+
+var curr_slide = $("#slides > div").first();
+curr_slide.css('visibility', "visible");
+
+
+$("#next_slide").click(function(){
+    $("#slides > div:visible").css('visibility', 'hidden');
+    console.log(curr_slide.next());
+    curr_slide = curr_slide.next();
+    curr_slide.css('visibility', "visible");
+});
+
+</script>
+
+{% endblock %}

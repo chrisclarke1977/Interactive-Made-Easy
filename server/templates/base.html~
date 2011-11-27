@@ -16,7 +16,10 @@
 
 
     <script type="text/javascript" src="{{ STATIC_URL }}libs/highslide/highslide-full.min.js"></script>
-    <link href="{{ STATIC_URL }}libs/jquery/css/jquery-ui.css" type="text/css" rel="stylesheet" />
+    <link href="{{ STATIC_URL }}libs/highslide/highslide.css" type="text/css" rel="stylesheet" />
+
+    <script type="text/javascript" src="{{ STATIC_URL }}libs/jquery_img_rotate/js/control.js"></script>
+    <link rel="stylesheet" href="{{ STATIC_URL }}/libs/jquery_img_rotate/css/style.css" type="text/css" media="screen"/>
 
     {% block head %}{% endblock %}
 
@@ -33,10 +36,10 @@
 
 <table>
     <tr>
-        <td style="background-color: blue;"><a href="/" class="menu_text_default">Home</a></td>
-        <td style="background-color: blue;"><a href="{% url add_slide %}" class="menu_text_default">Slides</a></td>
-        <td style="background-color: blue;"><a href="{% url media %}" class="menu_text_default">Media</a></td>
-        <td style="background-color: blue;"><a href="{% url workflow %}" class="menu_text_default">Workflow</a></td>
+        <td><a class="menu" href="/" class="menu_text_default">Home</a></td>
+        <td><a class="menu" href="{% url add_slide '' %}" class="menu_text_default">Slides</a></td>
+        <td><a class="menu" href="{% url media %}" class="menu_text_default">Media</a></td>
+        <td><a class="menu" href="{% url workflow %}" class="menu_text_default">Workflow</a></td>
 
         <!--td style="width:10pt;"></td-->
     </tr>

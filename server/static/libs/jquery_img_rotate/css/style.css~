@@ -1,0 +1,37 @@
+.box {
+    margin: 0 auto;
+    /*width: 381px;
+    height: 333px;*/
+    /*padding: 7px;*/
+    background: #fff;
+    -moz-box-shadow: 2px 2px 5px #333;
+    -webkit-box-shadow: 2px 2px 5px #333;
+    box-shadow: 2px 2px 5px #333;
+    position: positive;
+}
+.bt_drag, .bt_center {
+    display: none;
+    position: absolute;
+    z-index: 25;
+    height: 64px;
+    width: 64px;
+    padding: 5px;
+    background: #d3d3d3;
+    -webkit-border-radius: 2.5em;
+    -moz-border-radius: 2.5em;
+    border-radius: 2.5em;
+    opacity:0.7;
+    filter: alpha(opacity=70);
+    cursor: move;
+}
+.bt_drag {
+    opacity:0.3;
+    filter: alpha(opacity=30);
+}
+.bt_center {
+    z-index: 20;
+}
+.bt_center a img {
+    border: 1px solid #fff;
+}
+

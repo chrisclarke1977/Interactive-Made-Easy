@@ -1,7 +1,7 @@
 <div>List of media files:</div>
 <ul id="media_list">
     {% for file in files %}
-        <li media_id="{{ file.name }}" media_url="{{ file.url }}" media_type="{{ file.media_type }}">
+        <li class="media_li" media_id="{{ file.name }}" media_url="{{ file.url }}" media_type="{{ file.media_type }}">
             {% ifequal file.media_type "image" %}
             <img src="{{ file.url }}" width="50" style="vertical-align:middle;"/>
             {% endifequal %}
@@ -10,7 +10,7 @@
             <img src="{{ STATIC_URL }}img/video.jpeg" width="50" style="vertical-align:middle;"/>
             {% endifequal %}
 
-            <a href="{{ file.url }}">{{ file.name }}</a>
+            <a class="clickable" href="{{ file.url }}">{{ file.name_short }}</a>
         </li>
     {% endfor %}
 </ul>

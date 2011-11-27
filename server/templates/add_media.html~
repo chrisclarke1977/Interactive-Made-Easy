@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<a href="#" class="highslide" onclick="return hs.htmlExpand(this, {contentId: 'add-media-window'})">Add media</a>
+{% include "add_media_buttons.html" %}
 
 <!-- TODO: organize media entities in a table : 4 columns, N rows -->
 {% include "media_list.html" %}
